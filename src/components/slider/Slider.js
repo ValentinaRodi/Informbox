@@ -8,13 +8,13 @@ const Slider = () => {
     const [touchStart, setTouchStart] = useState(0);
     const [touchEnd, setTouchEnd] = useState(0);
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         setcurrentIndex((currentIndex + 1) % images.length);
-    //     }, 3000);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setcurrentIndex((currentIndex + 1) % images.length);
+        }, 3000);
         
-    //     return () => clearInterval(interval);
-    // }, [currentIndex]);
+        return () => clearInterval(interval);
+    }, [currentIndex]);
   
     const handlePaginationClick = (index) => {
         setCurrentIndex(index);
