@@ -1,0 +1,30 @@
+.nav {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.nav__link {
+    color: #FFFFFF;
+    text-decoration: none;
+    text-transform: lowercase;
+}
+
+.nav__link:hover { 
+    color: #8FFFC6;
+}
+
+@media (max-width: 1020px) {
+    .nav {
+        flex-direction: column;
+        gap: 12px;
+        align-items: start;
+    }
+
+    .nav__link {
+        color: #000000;
+    }
+}
+
+.nav__link_prim {
+    color: #8FFFC6;
+}
