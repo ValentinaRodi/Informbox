@@ -10,12 +10,12 @@ const Slider = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setcurrentIndex((currentIndex + 1) % images.length);
+            setCurrentIndex((currentIndex + 1) % dataArr.length);
         }, 3000);
         
         return () => clearInterval(interval);
     }, [currentIndex]);
-  
+
     const handlePaginationClick = (index) => {
         setCurrentIndex(index);
     };
@@ -31,14 +31,12 @@ const Slider = () => {
     useEffect(() => {  
         if(touchStart !==0 && touchEnd !==0) {
             if(touchStart > touchEnd) {
-                (currentIndex === dataArr.length - 1) ? setCurrentIndex(0) : setCurrentIndex(currentIndex + 1);
-            };
-            if(touchStart < touchEnd) {
-                (currentIndex === 0) ? setCurrentIndex(dataArr.length - 1) : setCurrentIndex(currentIndex - 1);
-            };
-        };  
-    }, [touchEnd]);
-    
+                setCurrentIndex((currentIndex) => (currentIndex === dataArr.length - 1) ? 0 : currentIndex + 1);
+            } else if(touchStart < touchEnd) {
+                setCurrentIndex((currentIndex) => (currentIndex === 0) ? dataArr.length - 1 : currentIndex - 1);
+            }
+        }  
+    }, [touchEnd, touchStart, currentIndex]); 
    
     return (
         <div className="slider wrapper" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
@@ -52,7 +50,7 @@ const Slider = () => {
                     </div>
                     <button className='flex-center font-roboto slide__btn'>how it work</button>
                 </div>
-                <div className={`${dataArr[currentIndex].id === 1 ? 'slide__img_small' : 'slide__img'}`} >
+                <div className='slide__img'>
                     <img src={`/img/${dataArr[currentIndex].img}`} alt='' />
                 </div>
             </div>
